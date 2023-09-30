@@ -8,17 +8,20 @@ class Calculator {
         this.currentSymbol = "";
         this.previousSymbol = "";
         this.display_screen = document.getElementById("result").value;
+        // Clears the display 
         this.clear = () => {
             this.currentdisplay = "";
             let display_screen = document.getElementById("result");
             display_screen.value = this.currentdisplay;
         };
+        // Updates the current display bases on input string
         this.updateDisplay = (input) => {
             this.currentdisplay += input;
             let display_screen = document.getElementById("result");
             display_screen.value = this.currentdisplay;
             console.log(this.currentdisplay);
         };
+        // Checks which button was pressed and determines what the functionality should be using switch statements
         this.button_pressed = (btn) => {
             switch (btn) {
                 case "delete":
@@ -52,6 +55,7 @@ class Calculator {
         };
     }
 }
+// Init function that adds EventListeners to each of the buttons on the calculator
 function init() {
     let calculator = new Calculator();
     function button_listener() {

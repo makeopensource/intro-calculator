@@ -12,12 +12,14 @@ class Calculator {
 
     }
 
+    // Clears the display 
     clear = () => {
         this.currentdisplay = ""
         let display_screen = document.getElementById("result") as HTMLInputElement
         display_screen.value = this.currentdisplay
     }
 
+    // Updates the current display bases on input string
     updateDisplay = (input: string) => {
         this.currentdisplay += input
         let display_screen = document.getElementById("result") as HTMLInputElement
@@ -26,7 +28,7 @@ class Calculator {
 
     }
 
-
+    // Checks which button was pressed and determines what the functionality should be using switch statements
     button_pressed = (btn: string) => {
         switch (btn){
             case "delete":
@@ -61,6 +63,7 @@ class Calculator {
     }
 }
 
+// Init function that adds EventListeners to each of the buttons on the calculator
 function init(){
     let calculator = new Calculator()
     function button_listener(){
