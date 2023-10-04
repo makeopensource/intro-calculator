@@ -13,18 +13,24 @@ class Calculator {
     }
 
     // Clears the display 
-    clear = () => {
+    full_clear = () => {
+        this.currentNumber = 0;
+        this.previousNumber = 0; 
+        this.totalEval = 0;
+        this.clear_screen()
+    }
+
+    clear_screen = () => {
         this.currentdisplay = ""
         let display_screen = document.getElementById("result") as HTMLInputElement
         display_screen.value = this.currentdisplay
     }
-
+ 
     // Updates the current display bases on input string
     updateDisplay = (input: string) => {
         this.currentdisplay += input
         let display_screen = document.getElementById("result") as HTMLInputElement
         display_screen.value = this.currentdisplay
-        console.log(this.currentdisplay)
 
     }
 
@@ -39,28 +45,62 @@ class Calculator {
                     return
                 }
             case "clear":
-                this.clear()
+                this.full_clear()
                 return
+            case "equal":
+                if (this.currentdisplay != ""){
+                    if (this.currentSymbol == "+"){
+                        this.totalEval += parseFloat(this.currentdisplay)
+                    }
+                    if (this.currentSymbol == "-"){
+                        this.totalEval -= parseFloat(this.currentdisplay)
+                    }
+                    this.clear_screen()
+                    this.updateDisplay(this.totalEval.toString())
+                }
             case "/":
                 this.previousSymbol = this.currentSymbol
                 this.currentSymbol = btn
+                this.previousNumber = this.currentNumber
+                this.currentNumber = parseFloat(this.currentdisplay)
                 return
             case "*":
                 this.previousSymbol = this.currentSymbol
                 this.currentSymbol = btn
+                this.previousNumber = this.currentNumber
+                this.currentNumber = parseFloat(this.currentdisplay)
                 return
              case "+":
+                this.clear_screen()
+                this.add()
                 this.previousSymbol = this.currentSymbol
                 this.currentSymbol = btn
                 return
             case "-":
                 this.previousSymbol = this.currentSymbol
                 this.currentSymbol = btn
+                this.clear_screen()
+                if (this.previousNumber != 0){
+                    this.subtract()
+                    return
+                }
                 return
 
         }
         this.updateDisplay(btn)
+        this.currentNumber = parseFloat(this.currentdisplay)
     }
+
+        add = () => {
+            this.totalEval = (this.currentNumber) + (this.totalEval)
+            this.clear_screen()
+        }
+
+        subtract = () => {
+            let result = (this.currentNumber) - (this.previousNumber)
+            this.currentNumber = result
+            this.clear_screen()
+        }
 }
 
 // Init function that adds EventListeners to each of the buttons on the calculator
