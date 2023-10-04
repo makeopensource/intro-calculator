@@ -5,14 +5,14 @@ class Calculator {
         this.currentNumber = 0;
         this.previousNumber = 0;
         this.totalEval = 0;
-        this.currentSymbol = "";
-        this.previousSymbol = "";
+        this.history = [];
         this.display_screen = document.getElementById("result").value;
         // Clears the display 
         this.full_clear = () => {
             this.currentNumber = 0;
             this.previousNumber = 0;
             this.totalEval = 0;
+            this.history = [];
             this.clear_screen();
         };
         this.clear_screen = () => {
@@ -40,55 +40,114 @@ class Calculator {
                     this.full_clear();
                     return;
                 case "equal":
-                    if (this.currentdisplay != "") {
-                        if (this.currentSymbol == "+") {
-                            this.totalEval += parseFloat(this.currentdisplay);
-                        }
-                        if (this.currentSymbol == "-") {
-                            this.totalEval -= parseFloat(this.currentdisplay);
-                        }
-                        this.clear_screen();
-                        this.updateDisplay(this.totalEval.toString());
-                    }
+                    this.equate();
+                    return;
                 case "/":
-                    this.previousSymbol = this.currentSymbol;
-                    this.currentSymbol = btn;
-                    this.previousNumber = this.currentNumber;
-                    this.currentNumber = parseFloat(this.currentdisplay);
-                    return;
-                case "*":
-                    this.previousSymbol = this.currentSymbol;
-                    this.currentSymbol = btn;
-                    this.previousNumber = this.currentNumber;
-                    this.currentNumber = parseFloat(this.currentdisplay);
-                    return;
-                case "+":
-                    this.clear_screen();
-                    this.add();
-                    this.previousSymbol = this.currentSymbol;
-                    this.currentSymbol = btn;
-                    return;
-                case "-":
-                    this.previousSymbol = this.currentSymbol;
-                    this.currentSymbol = btn;
-                    this.clear_screen();
-                    if (this.previousNumber != 0) {
-                        this.subtract();
+                    if (!Array.isArray(this.history)) {
                         return;
                     }
+                    if (this.history.length == 1) {
+                        this.history.push("/");
+                        this.clear_screen();
+                        return;
+                    }
+                    this.history.push(this.currentNumber.toString());
+                    this.history.push("/");
+                    this.clear_screen();
+                    return;
+                case "*":
+                    if (!Array.isArray(this.history)) {
+                        return;
+                    }
+                    if (this.history.length == 1) {
+                        this.history.push("*");
+                        this.clear_screen();
+                        return;
+                    }
+                    this.history.push(this.currentNumber.toString());
+                    this.history.push("*");
+                    this.clear_screen();
+                    return;
+                case "+":
+                    if (!Array.isArray(this.history)) {
+                        return;
+                    }
+                    if (this.history.length == 1) {
+                        this.history.push("+");
+                        this.clear_screen();
+                        return;
+                    }
+                    this.history.push(this.currentNumber.toString());
+                    this.history.push("+");
+                    this.clear_screen();
+                    return;
+                case "-":
+                    if (!Array.isArray(this.history)) {
+                        return;
+                    }
+                    if (this.history.length == 1) {
+                        this.history.push("-");
+                        this.clear_screen();
+                        return;
+                    }
+                    this.history.push(this.currentNumber.toString());
+                    this.history.push("-");
+                    this.clear_screen();
                     return;
             }
             this.updateDisplay(btn);
             this.currentNumber = parseFloat(this.currentdisplay);
         };
-        this.add = () => {
-            this.totalEval = (this.currentNumber) + (this.totalEval);
-            this.clear_screen();
+        this.add = (number_1, number_2) => {
+            this.totalEval = (number_1) + (number_2);
         };
-        this.subtract = () => {
-            let result = (this.currentNumber) - (this.previousNumber);
-            this.currentNumber = result;
+        this.subtract = (number_1, number_2) => {
+            this.totalEval = (number_2) - (number_1);
+        };
+        this.multiply = (number_1, number_2) => {
+            this.totalEval = (number_1) * (number_2);
+        };
+        this.divide = (number_1, number_2) => {
+            this.totalEval = (number_2) / number_1;
+        };
+        this.equate = () => {
+            this.history.push(this.currentNumber.toString());
+            // console.log(this.history)
+            for (let i = 0; i < this.history.length; i++) {
+                console.log(this.totalEval);
+                if (this.history[i] == "+") {
+                    this.currentNumber = parseFloat(this.history[i + 1]);
+                    this.add(this.currentNumber, this.previousNumber);
+                    this.history[i + 1] = this.totalEval.toString();
+                    console.log(this.history);
+                }
+                if (this.history[i] == "-") {
+                    this.currentNumber = parseFloat(this.history[i + 1]);
+                    this.subtract(this.currentNumber, this.previousNumber);
+                    this.history[i + 1] = this.totalEval.toString();
+                    console.log(this.history);
+                }
+                if (this.history[i] == "*") {
+                    this.currentNumber = parseFloat(this.history[i + 1]);
+                    this.multiply(this.currentNumber, this.previousNumber);
+                    this.history[i + 1] = this.totalEval.toString();
+                    console.log(this.history);
+                }
+                if (this.history[i] == "/") {
+                    this.currentNumber = parseFloat(this.history[i + 1]);
+                    this.divide(this.currentNumber, this.previousNumber);
+                    this.history[i + 1] = this.totalEval.toString();
+                    console.log(this.history);
+                }
+                else {
+                    this.previousNumber = parseFloat(this.history[i]);
+                }
+            }
             this.clear_screen();
+            this.history = [];
+            this.history = [this.totalEval.toString()];
+            this.updateDisplay(this.totalEval.toString());
+            return;
         };
     }
 }
