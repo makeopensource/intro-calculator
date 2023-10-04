@@ -2,6 +2,7 @@
 class Calculator {
     constructor() {
         this.currentdisplay = "";
+        this.equate_pressed = false;
         this.currentNumber = 0;
         this.previousNumber = 0;
         this.totalEval = 0;
@@ -28,6 +29,10 @@ class Calculator {
         };
         // Checks which button was pressed and determines what the functionality should be using switch statements
         this.button_pressed = (btn) => {
+            if (this.equate_pressed == true) {
+                this.full_clear();
+                this.equate_pressed = false;
+            }
             switch (btn) {
                 case "delete":
                     if (this.currentdisplay != "") {
@@ -111,6 +116,7 @@ class Calculator {
             this.totalEval = (number_2) / number_1;
         };
         this.equate = () => {
+            this.equate_pressed = true;
             this.history.push(this.currentNumber.toString());
             // console.log(this.history)
             for (let i = 0; i < this.history.length; i++) {
