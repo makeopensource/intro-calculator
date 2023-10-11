@@ -20,7 +20,7 @@ of the calculator is left incomplete, which is where you come in!
 
 #### 1. Install the latest version of Node
 
-In order for TypeScript to successfully transpile to JavaScript, you need to make sure you have the latest
+For TypeScript to successfully transpile to JavaScript, you need to ensure you have the latest
 version of [Node](https://nodejs.org/en) downloaded and installed. Proceed to download the recommended version of Node
 that corresponds to your operating system.
 
@@ -40,6 +40,21 @@ npm i -g typescript
 sudo npm i -g typescript
 ```
 
+#### 3. Install Visual Studio Code (Optional but HIGHLY Recommended)
+
+To help make the accessibility of the webpage calculator easier, it is HIGHLY recommended to install [Visual Studio Code](https://code.visualstudio.com/download).
+
+After installing Visual Studio Code, install the extension, [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
+The Live Server extension will allow you to start up the calculator webpage with the click of a button.
+
 ### Functionality
 
-Coming soon...
+The TypeScript calculator will have the following functionality:
+* The user can enter any integer via the number buttons.
+* The user can enter any floating point/decimal number via the number buttons.
+* The number entered by the user can deleted character by character via the delete button.
+* The calculator's display can be fully cleared via the clear button.
+* Addition.
+* Multiplication.
+* Subtraction.
+* Division.
