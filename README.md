@@ -1,45 +1,46 @@
-# Welcome
+# Getting Started with Create React App
 
-Welcome new members to UB's MakeOpenSource club! This project is to help you get accustomed
-to the basics of Frontend development involving HTML, CSS, and TypeScript.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## What is TypeScript?
+## Available Scripts
 
-TypeScript is a free and open-source high-level programming language developed by Microsoft that adds static typing with optional type annotations to JavaScript. It is designed for the development of large applications and transpiles to JavaScript.
-TypeScript can drastically reduce runtime errors, catching them before compile time.
+In the project directory, you can run:
 
-TypeScript is the primary language being used for DevU, which is used for both the client and API.
+### `npm start`
 
-## Project
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-You will be designing the functionality for a simple calculator with TypeScript.
-The HTML and CSS of the calculator have been completed for you, but the overall functionality
-of the calculator is left incomplete, which is where you come in!
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-### Getting Started
+### `npm test`
 
-#### 1. Install the latest version of Node
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-In order for TypeScript to successfully transpile to JavaScript, you need to make sure you have the latest
-version of [Node](https://nodejs.org/en) downloaded and installed. Proceed to download the recommended version of Node
-that corresponds to your operating system.
+### `npm run build`
 
-#### 2. Install the TypeScript Compiler
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-In the terminal, run this command to install the TypeScript Compiler
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-##### Windows:
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-```bash
-npm i -g typescript
-```
+### `npm run eject`
 
-##### MacOS and Linux:
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-```bash
-sudo npm i -g typescript
-```
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-### Functionality
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-Coming soon...
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
